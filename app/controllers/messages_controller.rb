@@ -24,8 +24,4 @@ class MessagesController < ApplicationController
   def set_message
     @message ||= nylas.messages.find(params[:id])
   end
-
-  def nylas
-    @nylas ||= nylas_client(ENV['ACCOUNT_ACCESS_TOKEN'])
-  end
 end

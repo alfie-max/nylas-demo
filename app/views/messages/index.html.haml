@@ -17,7 +17,7 @@
         %td= msg.thread_id
         %td= msg.to.map(&:email).join('\n')
         %td= msg.from.map{ |from| "#{from.name} <#{from.email}>" }.join('\n')
-        %td= msg.date.to_date
+        %td= msg.date.to_datetime
         %td= link_to msg.subject, message_path(msg.id)
         %td= msg.snippet
         %td= msg.starred

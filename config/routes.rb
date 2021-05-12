@@ -7,4 +7,6 @@ Rails.application.routes.draw do
       get :mark_as_unread
     end
   end
+
+  resources :files, only: :show
 end

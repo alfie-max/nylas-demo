@@ -23,7 +23,7 @@ From Email :
 %br
 
 Date :
-= @message.date.to_date
+= @message.date.to_datetime
 %br
 
 Subject :
@@ -32,6 +32,11 @@ Subject :
 
 Snippet :
 = @message.snippet
+%br
+
+Files :
+- @message.files.each do |file|
+  = link_to file.filename, file_path(file.id), target: '_blank'
 %br
 
 Body :
