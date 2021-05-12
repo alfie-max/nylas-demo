@@ -1,0 +1,28 @@
+%table{style: "width:100%"}
+  %thead
+    %tr
+      %th ID
+      %th Thread ID
+      %th To Email
+      %th From Email
+      %th Date
+      %th Subject
+      %th Snippet
+      %th Starred
+      %th Unread
+  %tbody
+    - @messages.each do |msg|
+      %tr
+        %td= msg.id
+        %td= msg.thread_id
+        %td= msg.to.map(&:email).join('\n')
+        %td= msg.from.map{ |from| "#{from.name} <#{from.email}>" }.join('\n')
+        %td= msg.date.to_date
+        %td= link_to msg.subject, message_path(msg.id)
+        %td= msg.snippet
+        %td= msg.starred
+        %td
+          - if msg.unread
+            = link_to 'Mark as Read', mark_as_read_message_path(msg.id)
+          - else
+            = link_to 'Mark as Unread', mark_as_unread_message_path(msg.id)
