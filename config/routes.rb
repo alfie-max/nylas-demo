@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   end
 
   resources :files, only: :show
+  resources :folders, only: :show
 end

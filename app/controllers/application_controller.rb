@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  helper_method :nylas
+
   def nylas
     @nylas ||= nylas_client(ENV['ACCOUNT_ACCESS_TOKEN'])
   end

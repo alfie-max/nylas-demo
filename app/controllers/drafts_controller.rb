@@ -8,7 +8,7 @@ class DraftsController < ApplicationController
   def send_mail
     @draft.send!
 
-    redirect_to drafts_path
+    redirect_to folder_path(@draft.folder.id)
   end
 
   private

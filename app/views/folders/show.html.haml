@@ -1,4 +1,6 @@
-%h4 Drafts
+%h4= @folder.display_name
+- drafts = @folder.display_name.eql?('Drafts')
+- inbox = @folder.display_name.eql?('Inbox')
 %table.table{style: "width:100%"}
   %thead
     %tr
@@ -7,12 +9,14 @@
       %th Date
       %th Subject
       %th Snippet
-      %th Actions
+      - if inbox || drafts
+        %th Actions
   %tbody
-    - @drafts.each do |msg|
+    - @messages.each do |msg|
       %tr
         %td
           = msg.id
+          %br
           = msg.thread_id
         %td
           - msg.from.each do |from|
@@ -29,4 +33,10 @@
         %td= link_to msg.subject, message_path(msg.id)
         %td= msg.snippet
         %td
-          = link_to 'Send Mail', send_mail_draft_path(msg.id)
+          - if drafts
+            = link_to 'Send Mail', send_mail_draft_path(msg.id)
+          - if inbox
+            - if msg.unread
+              = link_to 'Mark as Read', mark_as_read_message_path(msg.id)
+            - else
+              = link_to 'Mark as Unread', mark_as_unread_message_path(msg.id)
