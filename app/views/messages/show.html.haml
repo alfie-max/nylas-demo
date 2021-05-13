@@ -1,44 +1,6 @@
-ID :
-= @message.id
-%br
-
-Thread ID :
-= @message.thread_id
-%br
-
-Starred :
-= @message.starred
-%br
-
-Unread :
-= @message.unread
-%br
-
-To Email :
-= @message.to.map(&:email).join('\n')
-%br
-
-From Email :
-= @message.from.map{ |from| "#{from.name} <#{from.email}>" }.join('\n')
-%br
-
-Date :
-= @message.date.to_datetime
-%br
-
-Subject :
-= @message.subject
-%br
-
-Snippet :
-= @message.snippet
-%br
-
-Files :
-- @message.files.each do |file|
-  = link_to file.filename, file_path(file.id), target: '_blank'
-%br
-
-Body :
-= @message.body.html_safe
-%br
+.row
+  .col-md-1
+  .col-md-5.col-sm-12
+    = render 'message_details', message: @message
+  .col-md-5.col-sm-12
+    = render 'reply_form', message: @message

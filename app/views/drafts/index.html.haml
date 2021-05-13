@@ -6,10 +6,9 @@
       %th Date
       %th Subject
       %th Snippet
-      %th Starred
-      %th Unread
+      %th Actions
   %tbody
-    - @messages.each do |msg|
+    - @drafts.each do |msg|
       %tr
         %td
           = msg.id
@@ -29,12 +28,4 @@
         %td= link_to msg.subject, message_path(msg.id)
         %td= msg.snippet
         %td
-          - if msg.starred
-            %i.bi.bi-star-fill
-          - else
-            %i.bi.bi-star
-        %td
-          - if msg.unread
-            = link_to 'Mark as Read', mark_as_read_message_path(msg.id)
-          - else
-            = link_to 'Mark as Unread', mark_as_unread_message_path(msg.id)
+          = link_to 'Send Mail', send_mail_draft_path(msg.id)
