@@ -17,4 +17,6 @@ Rails.application.routes.draw do
 
   resources :files, only: :show
   resources :folders, only: :show
+
+  get '/auth/microsoft_office365/callback', to: 'office365#callback', as: :office365_callback
 end

@@ -20,6 +20,8 @@ gem 'dotenv-rails', require: 'dotenv/rails-now'
 
 gem 'nylas'
 
+gem 'omniauth-microsoft-office365'
+
 group :development, :test do
   gem 'pry-rails'
 end
